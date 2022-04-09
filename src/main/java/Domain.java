@@ -9,14 +9,16 @@ public class Domain {
     public static void main(String[] args) {
         AddressService addressService;
         Address address = new Address();
-        address.setId(2);
+        address.setId(3);
         address.setCountry("Russia");
         address.setCity("Vologda");
-        address.setStreet("Leningradskaya");
+        address.setStreet("Levicheva");
         address.setPostCode("160000");
-        addressService = new AddressService();
+
         try {
-            //addressService.add(address);
+            addressService = new AddressService();
+            addressService.add(address);
+            addressService = new AddressService();
             List<Address> addressList= addressService.getAll();
             System.out.println(addressList);
         } catch (SQLException throwables) {
