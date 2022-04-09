@@ -1,7 +1,6 @@
 package dao;
 
 
-
 import entity.Project;
 
 import java.util.List;
