@@ -15,7 +15,7 @@ public class EmplProjService extends Util implements EmplProjDAO {
     @Override
     public void add(EmplProj emplProj) throws SQLException {
         PreparedStatement preparedStatement = null;
-        String sql = "Insert into EMPL_PROJ (EMPLOYEE_ID, PROJ_ID ) values (?, ?)";
+        String sql = "Insert into EMPL_PROJ (EMPLOYEE_ID, PROJECT_ID ) values (?, ?)";
         try {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setLong(1, emplProj.getEmployeeId());
@@ -40,7 +40,7 @@ public class EmplProjService extends Util implements EmplProjDAO {
             while (resultSet.next()) {
                 EmplProj emplProj = new EmplProj();
                 emplProj.setEmployeeId(resultSet.getLong("EMPLOYEE_ID"));
-                emplProj.setProjectId(resultSet.getLong("PROJ_ID"));
+                emplProj.setProjectId(resultSet.getLong("PROJECT_ID"));
                 emplProjList.add(emplProj);
             }
         } catch (SQLException throwables) {
@@ -56,14 +56,14 @@ public class EmplProjService extends Util implements EmplProjDAO {
     public EmplProj getByEmplIdProjId(long emplId, long projId) throws SQLException {
         EmplProj emplProj = new EmplProj();
         PreparedStatement preparedStatement = null;
-        String sql = "Select * from EMPL_PROJ where EMPLOYEE_ID = ? and PROJ_ID = ?";
+        String sql = "Select * from EMPL_PROJ where EMPLOYEE_ID = ? and PROJECT_ID = ?";
         try {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setLong(1, emplId);
             preparedStatement.setLong(2, projId);
             ResultSet resultSet = preparedStatement.executeQuery();
             emplProj.setEmployeeId(resultSet.getLong("EMPLOYEE_ID"));
-            emplProj.setProjectId(resultSet.getLong("PROJ_ID"));
+            emplProj.setProjectId(resultSet.getLong("PROJECT_ID"));
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -77,7 +77,7 @@ public class EmplProjService extends Util implements EmplProjDAO {
     @Override
     public void update(EmplProj emplProj, long emplId, long projId) throws SQLException {
         PreparedStatement preparedStatement = null;
-        String sql = "Update EMPL_PROJ SET  EMPLOYEE_ID=?, PROJ_ID=? where EMPLOYEE_ID=? and PROJ_ID=?";
+        String sql = "Update EMPL_PROJ SET  EMPLOYEE_ID=?, PROJECT_ID=? where EMPLOYEE_ID=? and PROJECT_ID=?";
         try {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setLong(1, emplProj.getEmployeeId());
@@ -96,7 +96,7 @@ public class EmplProjService extends Util implements EmplProjDAO {
     @Override
     public void remove(EmplProj emplProj) throws SQLException {
         PreparedStatement preparedStatement = null;
-        String sql = "Delete from EMPL_PROJ where EMPLOYEE_ID = ? and PROJ_ID=?";
+        String sql = "Delete from EMPL_PROJ where EMPLOYEE_ID = ? and PROJECT_ID=?";
 
         try {
             preparedStatement = connection.prepareStatement(sql);
